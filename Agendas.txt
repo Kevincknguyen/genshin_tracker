@@ -1,0 +1,64 @@
+Checklist:
+pipenv install flask
+pipenv pymysql
+if you need bcrypt, once in virtual shell:pipenv install flask-bcrypt
+also:
+Double check all necessary imports present.
+
+
+Process:
+Create eerp database
+Import database
+layout html files
+create classes for database
+layout controller routes
+Define functions
+
+ 
+Primary agenda:
+
+Resource cost table crud
+search bar functionality
+
+Avoid duplicates in recompile, add, and ascension costs
+profiule entry huge on 2 line
+
+
+
+
+Extra features:
+Check if username of profile you are searching for exists
+Advanced sort functionality using ajax
+Forget username and password
+Check if email actually exists
+Display total resource costs- also allow users to input their own resources. Have table compared too values like 50/100.
+Party page wehre you can equip artifacts and weapons with stat reflections.
+Allow altering levels of characters
+Active timer on resource page from when YOU clicked on it. different pet user.
+Fill out builds tab using youtube api and other such info
+Allow guests some functionality when it comes to resource cost
+Interactive map integration.
+
+
+
+
+{% for character in totalcharacters %}
+{% if character.rarity =='5' %}
+<a href="/characters/{{character.name}}" class="entry"><img class="entryimage" src="https://api.genshin.dev/characters/{{character.name}}/icon" alt="" id="five"></a>
+{% endif %}
+{% if character.rarity =='4' %}
+<a href="/characters/{{character.name}}" class="entry"><img class="entryimage" src="https://api.genshin.dev/characters/{{character.name}}/icon" alt="" id="four"></a>
+{% endif %}
+{% endfor %}
+
+
+ <!-- {% if 'user_id' in session %}
+                        <p class="add">
+                            {% if char.id != inTracker[0].character_id %}
+                            <a href="/add/{{win['name'].lower()}}/{{char.id}}" class="btn">Add to team</a>
+                            {% endif %}
+                            {% if session['user_id'] == inTracker[0].user_id and char.id == inTracker[0].character_id %}
+                            REMOVE FROM TEAM
+                            {% endif %}
+                        </p>
+                        {% endif %} -->

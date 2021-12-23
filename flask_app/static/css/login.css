@@ -1,0 +1,148 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    color:white;
+    
+    
+}
+
+.body{
+    background-image: url("login_register_background.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position:center;
+    background-attachment: fixed;
+    height:100vh;
+}
+.box>* {
+    margin:30px;
+}
+
+.flex{
+    display:flex;
+    align-items: center;
+    
+}
+
+.jc_sb{
+    justify-content: space-between;
+}
+
+.jc_sa{
+    justify-content: space-around;
+}
+
+.jc_c{
+    justify-content: center;
+}
+.nav {
+    width: 100%;
+    height:70px;
+    background-color:rgb(34,36,49);
+}
+
+.logo{
+    border-radius: 50%;
+}
+
+.searchimg{
+    width:20px;
+    height:20px;
+    background-color: white;;
+    border-radius:50%
+}
+
+.logoname{
+    font-size: 200%;
+    margin-left:10px;
+    color:white;
+}
+.searchbtn{
+    border:none;
+    border-radius: 0 25px 25px 0;
+    padding:3px;
+}
+.nav>div{
+    margin:10px;
+    flex:1;
+    height:100%;
+}
+
+.search{
+    font-size:25px;
+    border:none;
+    border-radius: 25px 0 0 25px;
+    color:black;
+    padding: 0px 0px 0px 15px;
+}
+
+.navbutton>a{
+    color:rgb(178,190,181);
+    font-size:150%;
+    text-decoration:none;
+    transition: all 100ms linear;
+}
+
+
+.navbutton>a:hover{
+    color:white;
+    border-bottom:solid rgb(66,165,245);
+}
+
+
+.box{
+    width:30%;
+    border:solid rgb(66,165,245);
+    margin-top: 3%;
+    background-color:rgb(34,36,49);
+    color:white;
+    opacity: 0.9;
+}
+
+.box>*{
+    opacity:1;
+}
+.btn{
+    margin-top: 40px;
+    color:white;
+    border:solid rgb(66,165,245);
+    padding:10px;
+    background-color:rgb(34,36,49);
+    text-decoration: none;
+    transition: all 100ms linear;
+}
+
+.btn:hover{
+    border:solid white;
+}
+
+.tac {
+    text-align: center;
+}
+
+label,input{
+    display:inline-block;
+    font-size:20px;
+}
+.test {
+    margin:15px;
+    text-align:left;
+}
+
+.test>label{
+    width:230px;
+}
+
+.test>input{
+    color:black;
+}
+
+.header {
+    border-bottom:solid rgb(66,165,245);
+}
+
+.logo{
+    border-radius: 50%;
+    width:100px;
+
+}

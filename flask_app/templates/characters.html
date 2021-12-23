@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="\static\css\characters.css">
+    <title>Document</title>
+    <style>
+        .gacha_card_img {
+            height: inherit;
+            background-image: url('https://api.genshin.dev/characters/{{name}}/constellation');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .icon_big {
+            width: 255px;
+            height:255px;
+            background-image: url('https://api.genshin.dev/characters/{{name}}/constellation');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-radius: 50%;
+            margin-top: 50px;
+            border: solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <div class="nav flex jc_sb">
+            <div class="flex">
+                <img class="logo" src="\static\img\paimon.png" alt="logo">
+                <span class="logoname">Genshin Tracker</span>
+
+            </div>
+            <div class="flex jc_sa navbutton">
+                <a href="/" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Home</a>
+                <a href="" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Map</a>
+                {% if 'user_id' not in session %}
+                <a href="/login" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Login/register</a>
+                {% endif %}
+                {% if 'user_id' in session %}
+                <a href="/profile/{{session['username']}}" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Account</a>
+                <a href="/logout" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Logout</a>
+                {% endif %}
+
+            </div>
+            <form action="" method='post'></form>
+            <div class="flex jc_c">
+                <input type="text" placeholder="Search" name="search" class="search" size="30">
+                <button type="submit" class="searchbtn"><img class="searchimg" src="\static\img\search.jpg"
+                        alt="logo"></button>
+            </div>
+            </form>
+        </div>
+
+
+        <div class="charactercontent">
+            <div class="charinfo">
+                <div class="flex">
+                    <div class="check">
+                        <h1>{{win['name']}} </h1>
+                        <img src="https://api.genshin.dev/characters/{{name}}/icon-big" class="icon_big" alt="check">
+                        {% if inTracker !=False %}
+                            {% if 'user_id' in session %}
+                            <p class="add">
+                                {% if char.id != inTracker[0].character_id %}
+                                <a href="/add/{{name}}/{{char.id}}" class="btn">Add to team</a>
+                                {% endif %}
+                                {% if session['user_id'] == inTracker[0].user_id and char.id == inTracker[0].character_id %}
+                                <a href="/delete/{{name}}/{{char.id}}" class="btn" style="background-color: rgb(45,31,122);">Remove</a>
+                                {% endif %}
+                            </p>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if inTracker == False%}
+                        {% if 'user_id' in session%}
+                        <p class="add"></p>
+                        <a href="/add/{{name}}/{{char.id}}" class="btn">Add to team</a>
+                        </p>
+                        {% endif %}
+                        {% endif %}
+
+                    </div>
+                    <div class="column check">
+                        <div>
+                            Vision:
+                            <img src="https://api.genshin.dev/elements/{{win['vision'].lower()}}/icon"
+                                class="small_icon" alt="check">
+                            <p>
+                                {{win['vision']}}
+                            </p>
+                        </div>
+                        <div>
+                            Weapon:
+                            <img src="\static\img\{{win['weapon']}}.png" class="small_icon" alt="check">
+                            <p>
+                                {{win['weapon']}}
+                            </p>
+                        </div>
+                        <div>
+                            Nation:
+                            <img src="https://api.genshin.dev/nations/{{win['nation'].lower()}}/icon" class="small_icon"
+                                alt="check">
+                            <p>{{win['nation']}}
+                            </p>
+                        </div>
+                        <div>
+                            Rarity:
+                            <img src="\static\img\5star.png" class="rarity" alt="check">
+                            <p>
+                                {{win['rarity']}}
+                            </p>
+                        </div>
+                        <div>
+                            Birthday:
+                            {{win['birthday']}}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="bio">{{win['description']}}</span>
+                    
+                </div>
+            </div>
+
+            
+            <div class="gacha_card">
+                <img class="gacha_card_img" src="https://api.genshin.dev/characters/{{name}}/gacha-card" alt="">
+            </div>
+
+
+            <div>
+                <div class="tab flex">
+                    <button class="tablinks" onclick="openTab(event,'Talents')" id="defaultOpen" autofocus>Talents</button>
+                    <button class="tablinks" onclick="openTab(event,'Constellations')">Constellations</button>
+                    <button class="tablinks" onclick="openTab(event,'Material costs')">Materials</button>
+                    <button class="tablinks" onclick="openTab(event,'Builds')">Builds</button>
+                </div>
+                <div class="tabcontent" id="Talents">
+                    <div>
+                        {% for x in range(win['skillTalents']|length) %}
+                        <div class="entry flex">
+                            <img src="\static\img\{{win['name']}}_stalent{{x}}.png" class="icon" alt="">
+                            <div>
+                                <h1>{{win['skillTalents'][x]['name']}}</h1>
+                                <p>{{win['skillTalents'][x]['description']}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <h1>Passive Talents</h1>
+                        {% for y in range(win['passiveTalents']|length) %}
+                        <div class="entry flex">
+                            <img src="\static\img\{{win['name']}}_ptalent{{y}}.png" class="icon" alt="dd">
+                            <div>
+                                <h1>{{win['passiveTalents'][y]['name']}}</h1>
+                                <p>
+                                    {{win['passiveTalents'][y]['unlock']}}<br>
+                                    {{win['passiveTalents'][y]['description']}}
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="tabcontent" id="Constellations">
+                    <div>
+                        {% for x in range(win['constellations']|length) %}
+                        <div class="entry flex">
+                            <img src="\static\img\{{win['name']}}_con{{x}}.png" class="icon" alt="">
+                            <div>
+                                <h1>{{win['constellations'][x]['name']}}</h1>
+                                <p>
+                                    {{win['constellations'][x]['unlock']}}<br>
+                                    {{win['constellations'][x]['description']}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="tabcontent" id="Material costs">
+                    <div>
+                        <div class="entry">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Rank</th>
+                                        <th scope="col">Level Required</th>
+                                        <th scope="col">Mora Cost</th>
+                                        <th scope="col">Material</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in ascension %}
+                                    <tr>
+                                        <th scope="row">{{item.rank}}✦</th>
+                                        <td>{{item.level}}</td>
+                                        <td>{{item.mora}}</td>
+                                        <td>{{item.mat1cost}}<a href="">{{item.mat1}}</a></td>
+                                        <td>{{item.mat2cost}}<a href="">{{item.mat2}}</a></td>
+                                        <td>{{item.mat3cost}}<a href="">{{item.mat3}}</a></td>
+                                        {% if item.mat4cost >0 %}
+                                        <td>{{item.mat4cost}}<a href="">{{item.mat4}}</a></td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% if session['username'] =='admin' %}
+                        <div class="entry">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Rank</th>
+                                        <th scope="col">Level Required</th>
+                                        <th scope="col">Mora Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <form action="/characters/{{win['name'].lower()}}/{{char.id}}/ascension", method='post'>
+                                    <tr>
+                                        <td><input type="text" name="rank" placeholder="rank" value="" style="color:black;"></td>
+                                        <td><input type="text" name="level" placeholder="level to progress" value="" style="color:black;"></td>
+                                        <td><input type="text" name="mora" placeholder="mora cost" value="" style="color:black;"></td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">Mat1</td>
+                                        <td scope="row">Mat2</td>
+                                        <td scope="row">Mat3</td>
+                                        <td scope="row">Mat4</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="mat1" placeholder="name" value="" style="color:black;">
+                                            <input type="text" name="mat1cost" placeholder="quantity" value="" style="color:black;"></td>
+                                        <td><input type="text" name="mat2" placeholder="name" value="" style="color:black;">
+                                            <input type="text" name="mat2cost" placeholder="quantity" value="" style="color:black;"></td>
+                                        <td><input type="text" name="mat3" placeholder="name" value="" style="color:black;">
+                                            <input type="text" name="mat3cost" placeholder="quantity" value="" style="color:black;"></td>
+                                        <td><input type="text" name="mat4" placeholder="name" value="" style="color:black;">
+                                            <input type="text" name="mat4cost" placeholder="quantity" value="" style="color:black;"></td>
+                                    </tr>
+                                    <button style="color:black;" type="submit">Update/Inser</button>
+                                    </form>
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="tabcontent" id="Builds">
+                    <img src="\static\img\download.png" alt="awd">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="\static\js\character.js"></script>
+</body>
+
+</html>

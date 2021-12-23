@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="\static\css\home.css">
+    <title>Document</title>
+<style>
+
+   
+</style>
+</head>
+<body>
+<div class="body">
+    <div class="nav flex jc_sb">
+        <div class="flex">
+            <img class ="logo" src="\static\img\paimon.png" alt="logo">
+            <span class="logoname">Genshin Tracker</span>
+            
+        </div>
+        
+        <div class="flex jc_sa navbutton">
+            <a href="/" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Home</a>
+            <a href="" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Map</a>
+            {% if 'user_id' not in session %}
+            <a href="/login" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Login/register</a>
+            {% endif %}
+            {% if 'user_id' in session %}
+            <a href="/profile/{{session['username']}}" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Account</a>
+            <a href="/logout" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Logout</a>
+            {% endif %}
+
+        </div>
+        <form action="" method='post'></form>
+        <div class="flex jc_c">
+                <input type="text" placeholder="Search" name="search" class="search" size="30">
+                <button type="submit" class="searchbtn"><img class ="searchimg" src="\static\img\search.jpg" alt="logo"></button>
+        </div>
+        </form>
+    </div>
+
+
+    <div class="pagecontent">
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event,'Characters')" id="defaultOpen" autofocus>Characters</button>
+            <button class="tablinks" onclick="openTab(event,'Artifacts')">Artifacts</button>
+            <button class="tablinks" onclick="openTab(event,'Weapons')">Weapons</button>
+        </div>
+        <div class="tabcontent" id="Characters">
+            <div class="flex">  
+                <div class="sidebar">
+                    <form action="" method='post'>
+                    <div class="flex jc_c">
+                            <input type="text" placeholder="Search" name="search" class="search" size="10">
+                            <button type="submit" class="searchbtn"><img class ="searchimg" src="\static\img\search.jpg" alt="logo"></button>
+                    </div>
+                    </form>
+                    <div>
+                        <h2>Sort by Element</h2>
+                        <button class="sortbtn" onclick='filter("Electro")'><img src="https://api.genshin.dev/elements/electro/icon" alt="" class="sort Electro"></button>
+                        <button class="sortbtn" onclick='filter("Pyro")'><img src="https://api.genshin.dev/elements/pyro/icon" alt="" class="sort Pyro"></button>
+                        <button class="sortbtn" onclick='filter("Hydro")'><img src="https://api.genshin.dev/elements/hydro/icon" alt="" class="sort Hydro"></button>
+                        <button class="sortbtn" onclick='filter("Geo")'><img src="https://api.genshin.dev/elements/geo/icon" alt="" class="sort Geo"></button>
+                        <button class="sortbtn" onclick='filter("Cryo")'><img src="https://api.genshin.dev/elements/cryo/icon" alt="" class="sort Cryo"></button>
+                        <button class="sortbtn" onclick='filter("Anemo")'><img src="https://api.genshin.dev/elements/anemo/icon" alt="" class="sort Anemo"></button>
+                    </div>
+                    <div>
+                        <h2>Sort by Rarity</h2>
+                        <button class="sortbtn" onclick='filter("five")'><img src="\static\img\5star.png" alt="" class="stars"></button>
+                        <button class="sortbtn" onclick='filter("four")'><img src="\static\img\5star.png" alt="" class="stars"></button>
+                    </div>
+                    <div>
+                        <h2>Sort by Weapon Type</h2>
+                        <button class="sortbtn" onclick='filter("Bow")'><img src="\static\img\bow.png" alt="" class="sort"></button>
+                        <button class="sortbtn" onclick='filter("Catalyst")'><img src="\static\img\catalyst.png" alt="" class="sort"></button>
+                        <button class="sortbtn" onclick='filter("Claymore")'><img src="\static\img\claymore.png" alt="" class="sort"></button>
+                        <button class="sortbtn" onclick='filter("Polearm")'><img src="\static\img\polearm.png" alt="" class="sort"></button>
+                        <button class="sortbtn" onclick='filter("Sword")'><img src="\static\img\Sword.png" alt="" class="sort"></button>
+                    </div>
+                    <div>
+                        <h2>Sort by Region</h2>
+                        <button class="sortbtn" onclick='filter("Inazuma")'><img src="https://api.genshin.dev/nations/inazuma/icon" alt="" class="sort"></button>
+                        <button class="sortbtn" onclick='filter("Mondstadt")'><img src="https://api.genshin.dev/nations/mondstadt/icon" alt="" class="sort"></button>
+                        <button class="sortbtn" onclick='filter("Liyue")'><img src="https://api.genshin.dev/nations/liyue/icon" alt="" class="sort"></button>
+                    </div>
+
+                    <div>
+                        {% if char.id==session['user_id'] %}
+                        {{char.id}}
+                        <button>Check</button>
+                        <button>Check</button>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="mainbar">
+                    {% for char in char.chars %}
+                    {% if char.rarity =='5' %}
+                    <a href="/characters/{{char.name}}" class="entry five {{char.vision}} {{char.weapon}} {{char.nation}}">
+                        <img class="entryimage" src="https://api.genshin.dev/characters/{{char.name}}/icon" alt=""></a>
+                    {% endif %}
+                    {% if char.rarity =='4' %}
+                    <a href="/characters/{{char.name}}" class="entry four {{char.vision}} {{char.weapon}} {{char.nation}}"><img class="entryimage" src="https://api.genshin.dev/characters/{{char.name}}/icon" alt="" ></a>
+                    {% endif %}
+                    {% endfor %}
+                    <div class="placeholder"><img class="placeholderimage" src="\static\img\paimon.png" alt=""></div>
+                    <div class="placeholder"><img class="placeholderimage" src="\static\img\paimon.png" alt=""></div>
+                    <div class="placeholder"><img class="placeholderimage" src="\static\img\paimon.png" alt=""></div>
+                    <div class="placeholder"><img class="placeholderimage" src="\static\img\paimon.png" alt=""></div>
+                    <div class="placeholder"><img class="placeholderimage" src="\static\img\paimon.png" alt=""></div>
+                    <div class="placeholder"><img class="placeholderimage" src="\static\img\paimon.png" alt=""></div>
+                </div>
+            </div>  
+        </div>
+        <div class="tabcontent" id="Artifacts">
+            <div class="flex">  
+                <div class="sidebar">
+                    <form action="" method='post'>
+                    <div class="flex jc_c">
+                            <input type="text" placeholder="Search" name="search" class="search" size="10">
+                            <button type="submit" class="searchbtn"><img class ="searchimg" src="\static\img\search.jpg" alt="logo"></button>
+                    </div>
+                    </form>
+                    <div>
+                        <h2>Sort by set</h2>
+                        <button>s</button>
+                        <button>s</button>
+                        <button>s</button>
+                    </div>
+                    <div>
+                        <h2>Sort by Rarity</h2>
+                        <button>s</button>
+                        <button>s</button>
+                        <button>s</button>
+                    </div>
+                    <div>
+                        <h2>Sort by Artifact Type</h2>
+                        <button>s</button>
+                        <button>s</button>
+                        <button>s</button>
+                    </div>
+                </div>
+                <form action=""></form>
+                <div class="mainbar">
+                    <a href="/characters/{{name}}" class="entry"><img src="https://placekeanu.com/130/130" alt=""></a>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                    <div class="entry">a</div>
+                </div>
+            </div>  
+        </div>
+        <div class="tabcontent" id="Weapons">
+            <div class="flex">  
+                <div class="sidebar">
+                    <form action="" method='post'>
+                    <div class="flex jc_c">
+                            <input type="text" placeholder="Search" name="search" class="search" size="10">
+                            <button type="submit" class="searchbtn"><img class ="searchimg" src="\static\img\search.jpg" alt="logo"></button>
+                    </div>
+                    </form>
+                    <div>
+                        <h2>Sort by set</h2>
+                        <button>s</button>
+                        <button>s</button>
+                        <button>s</button>
+                    </div>
+                    <div>
+                        <h2>Sort by Rarity</h2>
+                        <button>s</button>
+                        <button>s</button>
+                        <button>s</button>
+                    </div>
+                    <div>
+                        <h2>Sort by Artifact Type</h2>
+                        <button>s</button>
+                        <button>s</button>
+                        <button>s</button>
+                    </div>
+                </div>
+                <form action=""></form>
+                <div class="mainbar">
+                    
+                </div>
+            </div>  
+        </div>
+
+
+    </div>
+
+</div>
+<script src="\static\js\home.js"></script>
+</body>
+</html>

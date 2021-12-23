@@ -1,0 +1,247 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    color:white;
+}
+
+
+.flex{
+    display:flex;
+    align-items: center;
+    
+}
+
+.jc_sb{
+    justify-content: space-between;
+}
+
+.jc_sa{
+    justify-content: space-around;
+}
+
+.jc_c{
+    justify-content: center;
+}
+.nav {
+    width: 100%;
+    height:70px;
+    background-color:rgb(34,36,49);
+}
+
+.logo{
+    width:70px;
+}
+
+.searchimg{
+    width:20px;
+    height:20px;
+    background-color: white;;
+    border-radius:50%
+}
+
+.logoname{
+    font-size: 200%;
+    margin-left:10px;
+    color:white;
+}
+.searchbtn{
+    border:none;
+    border-radius: 0 25px 25px 0;
+    padding:3px;
+}
+.nav>div{
+    margin:10px;
+    flex:1;
+    height:100%;
+}
+
+.search{
+    font-size:25px;
+    border:none;
+    border-radius: 25px 0 0 25px;
+    
+    padding: 0px 0px 0px 15px;
+}
+
+.navbutton>a{
+    color:rgb(178,190,181);
+    font-size:150%;
+    text-decoration:none;
+    transition: all 100ms linear;
+}
+
+
+.navbutton>a:hover{
+    color:white;
+    border-bottom:solid rgb(66,165,245);
+}
+
+.body{
+    height:103%;
+}
+.charactercontent{
+    display:flex;
+    height:97vh;
+    width:inherit;
+    border-top:solid rgb(66,165,245);
+}
+
+.charactercontent>div{
+    background-color:rgb(34,36,49);
+}
+
+.tab {
+    font-size:0px;
+}
+
+.tab button{
+    font-size:30px;
+    width:250px;
+    background-color: rgb(34,36,49);
+    color:white;
+    outline:none;
+    text-align:center;
+}
+
+.tab button:active{
+    transform: scale(0.99);
+    
+}
+
+.tab button:focus{
+    border:solid black;
+    border-top:none;
+    background-color:rgb(66,165,245) ;
+}
+.tabcontent {
+    display:none;
+    overflow:scroll;
+    overflow-x:hidden;
+    height:93vh;
+}
+
+.tabcontent::-webkit-scrollbar{
+    display:none;
+}
+.tabcontent>div{
+    margin:10px;
+}
+
+.charinfo{
+    width:650px;
+}
+.charinfo>*{
+    margin:20px;
+}
+
+
+
+.check {
+    height:500px;
+    margin:30px;
+}
+.column{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    vertical-align: top;
+    height:350px;
+    background-color: rgb(24, 30, 31);
+    border-radius: 20px;
+    padding:10px;
+}
+
+.entry{
+    margin:20px;
+    word-wrap: break-word;
+    width:900px;
+    border-radius:20px;
+    background-color: rgb(24, 30, 31);
+    padding:30px;
+}
+
+.icon{
+    width:100px;
+    height:100px;
+    margin:0px 30px;
+    float:left;
+}
+
+
+.gacha_card{
+    width:270px;
+    height:97vh;
+}
+
+
+.check>h1{
+    text-align: center;
+}
+
+h1{
+    font-style:italic
+}
+
+.img_trait{
+    border:solid red;
+    float:left;
+}
+
+
+.small_icon{
+    width: 50px;
+    height:50px;
+    float:right;
+}
+
+.bio{
+    font-size: 30px;
+}
+
+.column>*{
+    font-size:20px;
+}
+
+
+.rarity{
+    width:90px;
+    float:right;
+
+}
+
+.add{
+    text-align:center;
+    margin-top:30px;
+    
+}
+
+.btn{
+    font-size:30px;
+    color:white;
+    background-color: rgb(66,165,245);
+    text-decoration: none;
+    padding:10px 50px;
+    border-radius:20px;
+    border:3px solid black;
+}
+
+th,td {
+    width:100px;
+    height:50px;
+    text-align: center;
+}
+
+.material_icon{
+    width: 60px;
+    height:60px;
+    float:none;
+    position:relative;
+    top:5px;
+
+}
+
+.table {
+    width:inherit;
+    background-color:rgb(24, 30, 31) ;
+    border-radius: 20px;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="\static\css\items.css">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <div class="nav flex jc_sb">
+        <div class="flex">
+            <img class ="logo" src="https://placekeanu.com/60/60" alt="logo">
+            <span class="logoname">Genshin Tracker</span>
+            
+        </div>
+        
+        <div class="flex jc_sa navbutton">
+            <a href="/" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Home</a>
+             <!-- IF STATEMENT FOR SESSION -->
+             <a href="/login" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Account</a>
+             <!-- END STATEMENT FOR SESSION -->
+            <a href="" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Map</a>
+            <a href="/logout" onmouseover="navbuttonover(this)" onmouseout="navbuttonout(this)">Logout</a>
+        </div>
+        <form action="" method='post'></form>
+        <div class="flex jc_c">
+                <input type="text" placeholder="Search" name="search" class="search" size="30">
+                <button type="submit" class="searchbtn"><img class ="searchimg" src="\static\img\search.jpg" alt="logo"></button>
+        </div>
+        </form>
+    </div>
+
+    <div class="pagecontent">
+        <div class="charinfo">
+            <div class="flex">
+                <div>
+                    <h1>Character name</h1>
+                    <img src="https://placekeanu.com/400/400" alt="check">
+                </div>
+                <div>
+                    other info
+                </div>
+            </div>
+            <div>
+                Info
+            </div>
+            <div>
+                Info
+            </div>
+        </div>
+        <div>
+            <div class="tab flex">
+                <button class="tablinks" onclick="openTab(event,'Talents')" id="defaultOpen">Talents</button>
+                <button class="tablinks" onclick="openTab(event,'Constellations')">Constellations</button>
+                <button class="tablinks" onclick="openTab(event,'Weapons')">Weapons</button>
+                <button class="tablinks" onclick="openTab(event,'Recommendations')">Recommendations</button>
+            </div>
+            <div class="tabcontent" id="Talents">
+                <div class="mainbar">
+                    <div class="entry">aaaaaaaaaaaaaaaaaaaaaaaaa</div>
+                </div>
+            </div>
+            <div class="tabcontent flex" id="Constellations">
+                <div>
+                    Hekki
+                </div>
+                <div>
+                    adwaawdwadwa
+                </div>
+            </div>
+            <div class="tabcontent flex" id="Weapons">
+                <div>
+                    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                </div>
+                <div>
+                    <div class="entry">a</div>
+    
+                </div>
+            </div>
+            <div class="tabcontent flex" id="Recommendations">
+                <div>
+                    ccccccccccccccccccccc
+                </div>
+                <div>
+                    <div class="entry">a</div>
+    
+                </div>
+            </div>
+    
+    
+        </div>
+    </div>
+
+</div>
+<script src="\static\js\home.js"></script>
+
+</div>
+<!-- <script src="\static\js\home.js"></script> -->
+</body>
+</html>
