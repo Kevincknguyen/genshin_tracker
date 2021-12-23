@@ -32,7 +32,7 @@
             {% endif %}
 
         </div>
-        <form id="myForm" method='post'>
+        <form id="myForm">
         <div class="flex jc_c">
                 <input type="text" placeholder="Search" name="search" class="search" size="30">
                 <button type="submit" class="searchbtn"><img class ="searchimg" src="\static\img\search.jpg" alt="logo"></button>
@@ -91,10 +91,22 @@
                 <div class="mainbar">
                     {% for character in totalcharacters %}
                     {% if character.rarity =='5' %}
-                    <a href="/characters/{{character.name}}" class="entry five {{character.vision}} {{character.weapon}} {{character.nation}}"><img class="entryimage" src="https://api.genshin.dev/characters/{{character.name}}/icon" alt=""></a>
+                    <a href="/characters/{{character.name}}" id ="{{character.name}}" class="entry five collapsible {{character.vision}} {{character.weapon}} {{character.nation}}"><img class="entryimage" src="https://api.genshin.dev/characters/{{character.name}}/icon" alt=""></a>
+                    <div class="majortest"> 
+                        <p>{{character.name}}</p>
+                        <p>{{character.vision}}</p>
+                        <p>{{character.weapon}}</p>
+                        <p>{{character.nation}}</p>
+                    </div>
                     {% endif %}
                     {% if character.rarity =='4' %}
-                    <a href="/characters/{{character.name}}" class="entry four {{character.vision}} {{character.weapon}} {{character.nation}}"><img class="entryimage" src="https://api.genshin.dev/characters/{{character.name}}/icon" alt=""></a>
+                    <a href="/characters/{{character.name}}" id ="{{character.name}}" class="entry four collapsible {{character.vision}} {{character.weapon}} {{character.nation}}"><img class="entryimage" src="https://api.genshin.dev/characters/{{character.name}}/icon" alt=""></a>
+                    <div class="majortest"> 
+                        <p>{{character.name}}</p>
+                        <p>{{character.vision}}</p>
+                        <p>{{character.weapon}}</p>
+                        <p>{{character.nation}}</p>
+                    </div>
                     {% endif %}
                     {% endfor %}
                     <div class="placeholder"><img class="placeholderimage" src="\static\img\paimon.png" alt=""></div>

@@ -1,10 +1,11 @@
 * {
     margin: 0px;
     padding: 0px;
-    color:white;
 }
 
-
+h2 {
+    color:white;
+}
 .flex{
     display:flex;
     align-items: center;
@@ -37,6 +38,11 @@
     height:20px;
     background-color: white;;
     border-radius:50%
+}
+
+.searchimage{
+    width:70px;
+    height:70px;
 }
 
 .logoname{
@@ -188,6 +194,10 @@ div.mainbar::-webkit-scrollbar {
     border-radius:20px;
     height:185px;
 }
+
+.entry:hover, .entryimage:hover{
+    border-radius: 20px 0px 0px 20px;
+}
 .entryimage, .placeholderimage {
 width:180px;
 height:180px;
@@ -205,14 +215,31 @@ border-radius:20px;
 
 #livesearchresults{
     position:absolute;
-    width:300px;
-    background-color:white;
+    width:100%;
     color:black;
+    background-color:white;
+    
 }
 
 
-#livesearchresults>div{
+#livesearchresults>*{
     color:black;
     border:solid black;
     height:100px;
+}
+
+
+.majortest{
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: rgb(24,30,31);
+    border:solid black;
+    margin-left:-30px;
+    margin-top:25px;
+    height:180px;
+    width:180px;
+    color:white;
+    border-radius: 0px 20px 20px 0px;
+
 }

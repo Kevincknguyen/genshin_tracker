@@ -129,15 +129,12 @@ def logout():
 @app.post('/search')
 def livesearch():
     data={
-        'search':request.form['search']
+        'search':request.form['search'] + '%' + '%'
     }
-
-    query="SELECT name FROM characters WHERE characters.name LIKE 'a%';"
-    results=connectToMySQL(DB).query_db(query)
-    print(results)
-    
+    print('DATA>>>>>>>>>>',data)
     matches=Character.livesearch(data)
-    return jsonify(matches=matches)
+    print('MATCHES>>>>>>>>>>',matches)
+    return jsonify(matches)
 
 
 # ADMIN DUTIES>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

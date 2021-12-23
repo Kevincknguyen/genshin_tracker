@@ -67,14 +67,9 @@ class Character:
         return results
 
 
-    @classmethod
-    def livesearch(cls,data): 
-        print(data)
-        query="SELECT name FROM characters WHERE characters.name LIKE '%(search)s%';"
-        results=connectToMySQL(DB).query_db(query,data)
-        print("TESTING>>>>>>>",results)
-        matches=[]
-        for match in results:
-            matches.append(match)
-        print("Matches>>>>>>>>>>",matches)
-        return matches
+    @staticmethod
+    def livesearch(data): 
+        query = "SELECT name FROM characters WHERE characters.name LIKE %(search)s;"
+        print("QUERY>>>>>>>>>",query)
+        return connectToMySQL(DB).query_db(query,data)
+        
